@@ -1,0 +1,1 @@
+export { ButtonUploadImage } from "./ButtonUploadImage";
