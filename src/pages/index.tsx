@@ -3,7 +3,7 @@ import Main from "@/layouts/Main";
 import Container from "@/components/Container";
 import { TPreview } from "@/components/ButtonUploadImage/types";
 import { getFileThumbnail } from "@/utils/file/getFileThumbnail";
-import { Content } from "@/components/Content";
+import { ContentCharacters } from "@/components/Content";
 import { ICharacter } from "@/interfaces";
 
 type THome = {
@@ -13,6 +13,7 @@ type THome = {
 export default function Home({ characters }: THome) {
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<TPreview[]>([]);
+  const [parameters, setParameters] = useState("");
 
   const handleAddFile = (newFiles: File[]) => {
     setFiles((prev) => [...prev, ...newFiles]);
@@ -32,7 +33,11 @@ export default function Home({ characters }: THome) {
     <Main>
       <Container>
         <Fragment>
-          <Content characters={characters} />
+          <ContentCharacters
+            characters={characters || []}
+            parameters={parameters}
+            setParameters={setParameters}
+          />
         </Fragment>
       </Container>
     </Main>
@@ -40,7 +45,7 @@ export default function Home({ characters }: THome) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:5000/characters");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL_LOCAL}/characters`);
   const characters = await res.json();
 
   return {

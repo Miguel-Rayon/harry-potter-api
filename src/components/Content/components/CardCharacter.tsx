@@ -9,7 +9,7 @@ import {
   Stack,
 } from "@mui/material";
 import { TCardCharacter } from "./types";
-import { IconHeart } from "@tabler/icons-react";
+import { IconBookmark } from "@tabler/icons-react";
 import { HOUSES_COLORS } from "../contants/houseColor";
 
 export const CardCharacter = ({ character }: TCardCharacter) => {
@@ -34,7 +34,7 @@ export const CardCharacter = ({ character }: TCardCharacter) => {
         <Grid
           size={{ xs: 12, md: 8 }}
           style={{
-            padding: 4,
+            padding: 10,
             backgroundColor: character.alive ? "inherit" : "rgba(0, 0, 0, 0.3)",
             transition: "background-color 0.3s ease",
           }}
@@ -42,8 +42,7 @@ export const CardCharacter = ({ character }: TCardCharacter) => {
           <Box
             sx={{
               width: "100%",
-              marginBottom: 3,
-              display: "flex",
+              display: { xs: "none", md: "flex" },
               alignContent: "center",
               justifyContent: "space-between",
             }}
@@ -57,10 +56,15 @@ export const CardCharacter = ({ character }: TCardCharacter) => {
                 : ""}
             </Typography>
             <IconButton>
-              <IconHeart />
+              <IconBookmark />
             </IconButton>
           </Box>
-          <Stack spacing={2} direction={"column"}>
+          <Stack
+            spacing={2}
+            direction={"column"}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          >
+            <Typography variant="h4">{character.name}</Typography>
             <Typography>Cumpleaños: {character.dateOfBirth}</Typography>
             <Typography>Género: {character.gender}</Typography>
             <Typography>Color de ojos: {character.eyeColour}</Typography>

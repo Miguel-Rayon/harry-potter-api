@@ -8,7 +8,6 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Container from "@/components/Container";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
-import Footer from "./components/Footer";
 
 const Main = ({
   children,
@@ -55,7 +54,6 @@ const Main = ({
       </AppBar>
       <Sidebar onClose={handleSidebarClose} open={open} variant="temporary" />
       <main>{children}</main>
-      <Footer />
     </Box>
   );
 };
